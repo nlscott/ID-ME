@@ -12,9 +12,9 @@
 	<string>Nic Scott</string>
 	<key>BundledFiles</key>
 	<array>
-		<string>/Users/nicscott/Dropbox/Code/Apps/ID ME/icon.png</string>
-		<string>/Users/nicscott/Dropbox/Code/Apps/ID ME/Pashua.app</string>
-		<string>/Users/nicscott/Dropbox/Code/Apps/ID ME/pashua.sh</string>
+		<string>/Users/nicscott/Desktop/001/ID-ME/support/icon.png</string>
+		<string>/Users/nicscott/Desktop/001/ID-ME/Pashua.app</string>
+		<string>/Users/nicscott/Desktop/001/ID-ME/pashua.sh</string>
 	</array>
 	<key>Creator</key>
 	<string>Platypus-5.4</string>
@@ -31,7 +31,7 @@
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
-	<string>/Users/nicscott/Library/Application Support/Platypus/PlatypusIcon-47167.icns</string>
+	<string>/Users/nicscott/Library/Application Support/Platypus/PlatypusIcon-40091.icns</string>
 	<key>Identifier</key>
 	<string>org.nicscott.IDME</string>
 	<key>InterfaceType</key>
@@ -57,7 +57,7 @@
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptPath</key>
-	<string>/Users/nicscott/Desktop/ID-ME/ID ME.sh</string>
+	<string>/Users/nicscott/Desktop/001/ID-ME/ID ME.sh</string>
 	<key>SendNotifications</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
@@ -258,6 +258,6 @@
 		<string>public.folder</string>
 	</array>
 	<key>Version</key>
-	<string>1.2</string>
+	<string>1.2.1</string>
 </dict>
 </plist>
