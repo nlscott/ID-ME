@@ -74,6 +74,45 @@ teamIdentifier=$(codesign -dvvv "$pathtoApp" 2>&1 | grep -w "TeamIdentifier" | c
 identifier=$(codesign -dvvv "$pathtoApp" 2>&1 | grep -w "Identifier" | cut -d "=" -f2)
 developer=$(codesign -dvvv "$pathtoApp" 2>&1 | grep -w "Authority=Developer ID Application:" | cut -d "=" -f2 | cut -d ":" -f2 | xargs)
 
+checkForArm64=$(mdls -name kMDItemExecutableArchitectures "${pathtoApp}" | grep arm64 | xargs)
+checkForIntel=$(mdls -name kMDItemExecutableArchitectures "${pathtoApp}" | grep x86_64 | xargs)
+
+
+function checkForARM64Architecture() {
+    arm64ArchStatus=false
+    if [[ $(echo "${checkForArm64//,}") = "arm64" ]];then
+        # echo "Arch: arm64"
+        arm64ArchStatus=true
+    fi
+}
+
+function checkForIntelArchitecture() {
+    intelArchStatus=false
+    if [[ $(echo "${checkForIntel}") = "x86_64" ]];then
+        # echo "Arch: arm64"
+        intelArchStatus=true
+    fi
+}
+
+function determineArchitecture() {
+    if [[ $arm64ArchStatus == true ]];then
+        if [[ $intelArchStatus == true ]];then
+            supportArchitecture="Unvisersal"
+        else
+            supportArchitecture="Silicon"
+        fi
+    elif [[ $intelArchStatus == true ]];then
+           supportArchitecture="Intel"
+    else
+        supportArchitecture="Unknown"
+    fi
+}
+
+
+checkForARM64Architecture
+checkForIntelArchitecture
+determineArchitecture
+
 # Sanity Check -----------------------------------------------------------------
 # echo $filepath
 # echo $fileMode
@@ -102,6 +141,12 @@ developer=$(codesign -dvvv "$pathtoApp" 2>&1 | grep -w "Authority=Developer ID A
     img.rely = 250
     img.maxwidth = 100
     img.path = "$MYDIR/icon.png"
+
+    txt0.type = text
+    txt0.default = Architecture: $supportArchitecture [return]
+    txt0.width = 500
+    txt0.x = 50
+    txt0.y = 225
 
     txt1.type = text
     txt1.default = Version: $shortString [return]
